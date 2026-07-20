@@ -1,32 +1,22 @@
-# React + TypeScript + Vite
+# rift
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Rick & Morty characters as 3D floating portal rings in dark space. Each ring is a character from the multiverse — bigger ring = more episodes, color = alive/dead/unknown status.
 
-Currently, two official plugins are available:
+**Visual Style:** Dark — Void (monochrome space with teal/coral/gold character accents)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**Data Source:** Rick & Morty API (rickandmortyapi.com)
 
-## React Compiler
+**How it works:**
+- Each floating portal ring represents a character from the show
+- Ring size = episode count (more episodes = larger ring, more prominent character)
+- Ring color = status: teal=Alive, coral=Dead, gold=Unknown
+- Rings cluster by origin dimension (Earth dimensions, Abadango, unknown, etc.)
+- OrbitControls for 3D navigation (drag to orbit, pinch to zoom)
+- Tap any ring to reveal character details (name, species, status, episode count, origin)
+- Auto-rotates slowly — each ring rotates and bobs independently
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**GitHub:** https://github.com/parthchandak02/rift
 
-## Expanding the Oxlint configuration
+**Live:** https://rift.parthchandak.info
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
-
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+**Tech:** React Three Fiber + drei. Hosted on Cloudflare Pages.
