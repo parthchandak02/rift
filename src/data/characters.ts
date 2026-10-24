@@ -36,11 +36,11 @@ const FALLBACK_CHARACTERS: CharacterData[] = [
   { id: 20, name: "Ants in my Eyes Johnson", species: "Human", status: "unknown", episodeCount: 2, originName: "Earth (C-137)" },
 ];
 
-async function fetchPage(page: number): Promise<CharacterData[]> {
+async function fetchPage(page: number): Promise<{ characters: CharacterData[]; total: number }> {
   const res = await fetch(`https://rickandmortyapi.com/api/character?page=${page}`);
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   const json = await res.json();
-  return json.results.map((c: any) => ({
+  const characters = json.results.map((c: any) => ({
     id: c.id,
     name: c.name,
     species: c.species,
@@ -48,16 +48,17 @@ async function fetchPage(page: number): Promise<CharacterData[]> {
     episodeCount: c.episode.length,
     originName: c.origin.name,
   }));
+  return { characters, total: json.info?.count ?? 0 };
 }
 
-async function fetchCharacters(): Promise<{ characters: CharacterData[]; isLive: boolean }> {
+async function fetchCharacters(): Promise<{ characters: CharacterData[]; isLive: boolean; total: number | null }> {
   try {
     const pages = Array.from({ length: C.pages }, (_, i) => i + 1);
     const results = await Promise.all(pages.map(fetchPage));
-    const characters = results.flat().slice(0, C.maxCharacters);
-    return { characters, isLive: true };
+    const characters = results.flatMap((r) => r.characters).slice(0, C.maxCharacters);
+    return { characters, isLive: true, total: results[0].total || null };
   } catch {
-    return { characters: FALLBACK_CHARACTERS, isLive: false };
+    return { characters: FALLBACK_CHARACTERS, isLive: false, total: null };
   }
 }
 

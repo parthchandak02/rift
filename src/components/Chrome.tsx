@@ -5,6 +5,7 @@ export function Chrome() {
   const characters = useStore((s) => s.characters);
   const lastFetchTime = useStore((s) => s.lastFetchTime);
   const isLive = useStore((s) => s.isLive);
+  const totalCount = useStore((s) => s.totalCount);
   const [timeAgo, setTimeAgo] = useState('0s');
 
   useEffect(() => {
@@ -37,7 +38,7 @@ export function Chrome() {
           lineHeight: 1,
           letterSpacing: '-0.02em',
         }}>
-          826
+          {characters.length || '–'}
         </div>
         <div style={{
           fontSize: '11px',
@@ -45,7 +46,7 @@ export function Chrome() {
           marginTop: '4px',
           letterSpacing: '0.5px',
         }}>
-          Rick & Morty Multiverse
+          {totalCount ? `of ${totalCount} in the Rick & Morty multiverse` : 'Rick & Morty Multiverse'}
         </div>
       </div>
 

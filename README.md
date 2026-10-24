@@ -22,9 +22,9 @@
 
 <br><br>
 
-<a href="https://rift.parthchandak.info"><img src="docs/assets/readme/hero.jpg" width="100%" alt="Teal, coral and gold flat rings floating in black space, a large teal ring overlapped by many smaller ones, with the number 826 top-left and a status legend at the bottom"></a>
+<a href="https://rift.parthchandak.info"><img src="docs/assets/readme/hero.jpg" width="100%" alt="Translucent teal, coral and gold rings floating in black space, centred in frame, with the number 100 of 826 top-left and a status legend at the bottom"></a>
 
-<sub>Live capture, 22 October 2026, zoomed out slightly. Real API data.</sub>
+<sub>Live capture, 23 October 2026. Real API data.</sub>
 
 </div>
 
@@ -33,8 +33,8 @@
 On load the page fetches the first five pages of the public
 [Rick and Morty API](https://rickandmortyapi.com) (100 characters) and turns each one into a
 flat ring in a React Three Fiber scene. Rings spin and bob on their own while the camera slowly
-orbits. The big 826 in the corner is the API's total character count; the stamp bottom-left
-shows how many were actually loaded. No API key is needed.
+orbits. The big number in the corner is how many characters were loaded, set against the API's
+live total (826 at the time of writing). No API key is needed.
 
 ## How it works
 
@@ -44,9 +44,9 @@ shows how many were actually loaded. No API key is needed.
 | `status` | Colour: teal for Alive, coral for Dead, gold for Unknown |
 | `origin.name` | Cluster: characters from the same origin are placed around the same point |
 
-Rings use additive blending, so where many overlap, as in the crowded `unknown` and Earth
-origin clusters, they burn out to white. The clusters sit off to one side of the orbit centre, so
-the field drifts across the frame as the camera turns.
+Rings are translucent, so where many overlap, as in the crowded `unknown` and Earth origin
+clusters, the colours deepen and mix instead of burning out to white. Clusters are spread around
+the orbit centre and the whole field is re-centred on it, so it stays in frame as the camera turns.
 
 Drag to orbit, scroll to zoom. Tap a ring and its name, species, status, episode count and
 origin appear in the centre for three seconds. If the API is unreachable the page falls back to

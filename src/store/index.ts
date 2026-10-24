@@ -10,6 +10,8 @@ interface AppState {
   setLastFetchTime: (t: number) => void;
   isLive: boolean;
   setIsLive: (v: boolean) => void;
+  totalCount: number | null;
+  setTotalCount: (n: number | null) => void;
 }
 
 const useStore = create<AppState>((set) => ({
@@ -21,6 +23,8 @@ const useStore = create<AppState>((set) => ({
   setLastFetchTime: (t) => set({ lastFetchTime: t }),
   isLive: false,
   setIsLive: (v) => set({ isLive: v }),
+  totalCount: null,
+  setTotalCount: (n) => set({ totalCount: n }),
 }));
 
 export { useStore };

@@ -1,6 +1,6 @@
 import { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { RingGeometry, AdditiveBlending, DoubleSide } from 'three';
+import { NormalBlending, DoubleSide } from 'three';
 import type { CharacterData } from '../data/characters';
 import { useStore } from '../store';
 
@@ -52,9 +52,9 @@ export function PortalRing({ data, position, maxEpisodeCount }: PortalRingProps)
         <meshBasicMaterial
           color={color}
           transparent
-          opacity={0.85}
+          opacity={0.32}
           side={DoubleSide}
-          blending={AdditiveBlending}
+          blending={NormalBlending}
           depthWrite={false}
         />
       </mesh>
@@ -66,7 +66,7 @@ export function PortalRing({ data, position, maxEpisodeCount }: PortalRingProps)
           transparent
           opacity={0.5}
           side={DoubleSide}
-          blending={AdditiveBlending}
+          blending={NormalBlending}
           depthWrite={false}
         />
       </mesh>
@@ -78,7 +78,7 @@ export function PortalRing({ data, position, maxEpisodeCount }: PortalRingProps)
           transparent
           opacity={0.15}
           side={DoubleSide}
-          blending={AdditiveBlending}
+          blending={NormalBlending}
           depthWrite={false}
         />
       </mesh>
